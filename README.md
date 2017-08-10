@@ -30,20 +30,17 @@ Email - solutions8infinity@gmail.com
 ## Donations
 
 If you find it useful, please consider donating some cryptocoins: 
-
-BTC - 1KEubFgqysM96CLL3oYWkNSvVMBULRCkbB
-ETH - 0xc881632b9d123efcfc603d244d07b43cddb42ed0
-ZEC - t1MSz6yyKsbbXuaZivFmsZ3mc2B1Km93JJC
+- BTC - 1KEubFgqysM96CLL3oYWkNSvVMBULRCkbB
+- ETH - 0xc881632b9d123efcfc603d244d07b43cddb42ed0
+- ZEC - t1MSz6yyKsbbXuaZivFmsZ3mc2B1Km93JJC
 
 Altcoins:
-
-BTS - a189ba0fa7326acd
-CLAM - xL8xbWBNX6L2NvgLgvixGawPHAVaftyT7L
-DOGE - DC9fD2YYMSy3CpZWxQf1fTpiZXNtLPTQji
-DASH - XqwguDTw9kaxCBy9cNEvsxjm2zjBoWfYyZ
-FCT - FA2FYD5sziFPCraLyFam7LJAjRzvEE88LXaxE4GLTodiwjty6pH4
-XMR - 4JUdGzvrMFDWrUUwY3toJATSeNwjn54LkCnKBPRzDuhzi5vSepHfUckJNxRL2gjkNrSqtCoRUrEDAgRwsQvVCjZbS1xvtiBUkYu9kTvshR
-XRP - r3gbyDmbAnhmgdNSoBzyJ1isM5TmjcLhxU
+- BTS - a189ba0fa7326acd
+- CLAM - xL8xbWBNX6L2NvgLgvixGawPHAVaftyT7L
+- DOGE - DC9fD2YYMSy3CpZWxQf1fTpiZXNtLPTQji
+- DASH - XqwguDTw9kaxCBy9cNEvsxjm2zjBoWfYyZ
+- FCT - FA2FYD5sziFPCraLyFam7LJAjRzvEE88LXaxE4GLTodiwjty6pH4
+- XRP - r3gbyDmbAnhmgdNSoBzyJ1isM5TmjcLhxU
 
 
 This address goes to a wallet with keys held by the lead contributor:  Boontjie
