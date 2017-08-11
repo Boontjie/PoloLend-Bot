@@ -6,7 +6,7 @@ The Crypto Coin Lending Bot is written in Javascript and features automatic lend
 It uses a spreadsheet to customise lending strategies easily and simply.  A default strategy is provided, but is easily changed Inspired by BitBotFactory's poloniexlendingbot.
 
 The accompanying google sheet can be found at:
-https://docs.google.com/spreadsheets/d/1ztRn2hwAhLnW16LLCouZ_cYrH3L8rT2SAeoJr3uFnro/pubhtml
+https://docs.google.com/spreadsheets/d/1ztRn2hwAhLnW16LLCouZ_cYrH3L8rT2SAeoJr3uFnro/
 
  - Recommended for communicating with Devs
 
