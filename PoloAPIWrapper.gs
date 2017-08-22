@@ -1,3 +1,13 @@
+/*************************************************************************
+The point of wrapper functions is many fold:
+    * to extend the baseAPI functionality
+    * keep the cluttering away from the basic API functions
+    * to validate the parameters of baseAPI calls before sending them
+    * trapping errors
+*********/
+
+
+
 var poloniexApi = function(apiKey,secretKey) {
   
   //Inherit all functions from the exchange API
@@ -7,11 +17,66 @@ var poloniexApi = function(apiKey,secretKey) {
   * Wrapper functions in addition to default API functions - extends API
   *********/
   
+  
+  
     /*************************************************************************
     * Wrapper functions : Base API
   *********/
   
   this.createLoanOffer = function(currency, amount, duration, autorenew, lendingrate){
+    /******
+    * Perform basic validation on parameters before wasting API call
+    */
+    if (currency == undefined) {  // argument not passed or undefined
+        Logger.warning('Function createLoanOffer in PoloAPIWrapper has no currency parameter. Operation aborted.');
+        return;
+    }
+    
+    if (amount == undefined) {  // argument not passed or undefined
+        Logger.warning('Function createLoanOffer in PoloAPIWrapper has no amount parameter. Operation aborted.');
+        return;
+    } else {
+      if(amount < 0){
+        Logger.warning('Function createLoanOffer in PoloAPIWrapper has negative loan amount. Operation aborted.');
+        return;
+      }
+    }
+    
+    if (duration == undefined) {  // argument not passed or undefined
+        Logger.warning('Function createLoanOffer in PoloAPIWrapper has no duration parameter. Operation aborted.');
+        return;
+    } else {
+      if(duration < MIN_NUM_LOAN_DAYS){
+        Logger.warning('Function createLoanOffer in PoloAPIWrapper duration parameter is too low. Minimum number of days is ' + MIN_NUM_LOAN_DAYS +'. Operation aborted.');
+        return;
+      }
+      
+      if(duration > MAX_NUM_LOAN_DAYS){
+        Logger.warning('Function createLoanOffer in PoloAPIWrapper duration parameter is too high. Maximum number of days is ' + MAX_NUM_LOAN_DAYS +'. Operation aborted.');
+        return;
+      }
+    }
+    
+    if (autorenew == undefined) {  // argument not passed or undefined
+      Logger.warning('Function createLoanOffer in PoloAPIWrapper has no autorenew parameter. Operation aborted.');
+      return;
+    } else {
+      if(!(autorenew == 0 || autorenew == 1)){
+        Logger.warning('Function createLoanOffer in PoloAPIWrapper has an unsupported value for autorenew parameter.  Only values 0 or 1 is allowed. Operation aborted.');
+        return;
+      }
+    }
+    
+    if (lendingrate == undefined) {  // argument not passed or undefined
+      Logger.warning('Function createLoanOffer in PoloAPIWrapper has no lendingrate parameter. Operation aborted.');
+      return;
+    } else {
+      if(lendingrate <= 0){
+        Logger.warning('Function createLoanOffer in PoloAPIWrapper has negative or zero lendingrate amount. Operation aborted.');
+        return;
+      }
+    }   
+    
     var parcedData = this.baseApiCreateLoanOffer(currency, amount, duration, autorenew, lendingrate)
     return parcedData['orderID']
   }

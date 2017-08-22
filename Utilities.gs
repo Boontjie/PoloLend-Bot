@@ -22,6 +22,23 @@ function getFirstEmptyRow(spreadsheetObj, rangeToCheck) {
   return (ct);
 }
 
+function clearScriptProperties(){
+  //Clear all script properties
+  PropertiesService.getScriptProperties().deleteAllProperties()};
+
+
+function clearCache(){
+  //Clear all cached objects
+  for(var cacheEntry in CacheService.getScriptCache()){
+    CacheService.getScriptCache().remove(cacheEntry);
+  };
+}
+
+function clearBotTriggers(){
+  ScriptApp.deleteTrigger('pingPolo')
+}
+
+
 
 //  https://stackoverflow.com/questions/11095888/search-whole-spreadsheet-to-find-text-within-a-cell-in-a-google-spreadsheet-and
 

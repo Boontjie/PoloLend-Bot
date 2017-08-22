@@ -10,7 +10,8 @@ Extends default google apps script logging.
 
 //Encapsulate betterlog in a class to make function names and calls private
 var BetterLog = function(useAdvLog){
-
+  if(!useAdvLog){return Logger};
+  
   //Expose useSpreadsheet and log as public in this class
   this.useSpreadsheet = function(optKey, optSheetName){
     if(useAdvLog == true){
@@ -46,6 +47,10 @@ var BetterLog = function(useAdvLog){
     }
     return nativeLogger_.log(message)
   };
+  
+  this.Level = function() {
+    return Level;
+  }
   
   
 /*************************************************************************
@@ -349,7 +354,8 @@ function log_(msgArgs, level) {
   var msg =  (typeof msgArgs[0] == 'string' || msgArgs[0] instanceof String) ? Utilities.formatString.apply(this, args) : msgArgs[0];  
   
   //default console logging (built in with Google Apps Script's View > Logs...)
-  nativeLogger_.log(convertUsingDefaultPatternLayout_(msg, level));
+  //nativeLogger_.log(convertUsingDefaultPatternLayout_(msg, level));
+  nativeLogger_.log(msg);
   
   //stackdriver console logging
   if (typeof console !== "undefined" && typeof console.time !== "undefined") {

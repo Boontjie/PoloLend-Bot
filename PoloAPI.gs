@@ -60,7 +60,9 @@
         
         //HTTP Internal server error - Google script limits exceeded
         if(response.getResponseCode().toString().charAt(0)==5){
-          Logger.severe('Internal Server Error - Daily Google Script Limits Exceeded');
+          Logger.severe('HTTP Exception ' + response.getResponseCode().toString() + ': Internal Server Error');
+          Logger.severe('Truncated Server response: ' + JSON.parse(response.getContentText()))
+          PropertiesService.getScriptProperties().setProperty('LendingBotRunstate', 'idle');
             throw 'Internal Server Error - Daily Google Script Limits Exceeded';
         }
         
@@ -76,6 +78,7 @@
                      for(var key in params){Errstring += ' ' + key + ' : ' + params[key] + '; '};
         Logger.warning(Errstring);
         
+        PropertiesService.getScriptProperties().setProperty('LendingBotRunstate', 'idle');
         throw 'Truncated Server response: ' + JSON.parse(response.getContentText())['error'];             
       }
     }
