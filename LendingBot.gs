@@ -1,6 +1,24 @@
 function runLendingBot(){
-  var lendbot = new LendingBot();
-  lendbot.runBot();
+  
+  //Try to run the bot, if any error terminates execution, set bot state to idle
+  try{
+    var lendbot = new LendingBot();
+    lendbot.runBot();
+  }
+  catch(e){
+    PropertiesService.getScriptProperties().setProperty('LendingBotRunstate', 'idle');
+  }
+}
+
+function runCounterPolo(){
+  var RunCounter = PropertiesService.getScriptProperties().getProperty('RunCounter');
+  var TotalRuntime = PropertiesService.getScriptProperties().getProperty('TotalRuntime');
+  var t = Date.now();
+  pingPolo();
+  PropertiesService.getScriptProperties().setProperty('TotalRuntime', Date.now() - t + +TotalRuntime);
+  PropertiesService.getScriptProperties().setProperty('RunCounter', +RunCounter+1);
+  
+  
 }
 
 function pingPolo(){
@@ -17,8 +35,6 @@ function pingPolo(){
   var botRunstate = PropertiesService.getScriptProperties().getProperty('LendingBotRunstate')
   var refreshTimeRemaining = PropertiesService.getScriptProperties().getProperty("refreshTimeRemaining");
   
-  Logger.log("LastPing: " + new Date().toLocaleString('en-GB',{timeZone : 'UTC'}));
-  Logger.log('Cache: ' + refreshTimeRemaining)
   
   var exchInst = new poloniexApi(gSheet.APIKEY, gSheet.SECRETKEY);
   
@@ -53,16 +69,6 @@ function pingPolo(){
     refreshTimeRemaining = +refreshTimeRemaining - Math.floor( (+stopDateTime.getTime() - +startDateTime.getTime()) / 1000 ) - 30
     PropertiesService.getScriptProperties().setProperty("refreshTimeRemaining", refreshTimeRemaining); // cache for 1.5 minutes
   }
-  
-  //If there is no loan balance and no open loan offers, end the ping
-  
-  if(!loanRefreshPossible) { 
-    var stopDateTime = new Date();
-    Logger.log((+stopDateTime.getTime() - +startDateTime.getTime()) / 1000);
-    return;}
-
-  var stopDateTime = new Date();
-  Logger.log((+stopDateTime.getTime() - +startDateTime.getTime()) / 1000)
 }
 
 var LendingBot = function(){

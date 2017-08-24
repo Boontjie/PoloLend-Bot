@@ -107,7 +107,7 @@ var poloniexApi = function(apiKey,secretKey) {
     var parcedData = this.exchInstance.returnBalances();
     for(var key in parcedData){
       this.exchInstance.generateNewAddress(key);
-      Utilities.sleep(1000);
+      Utilities.sleep(1000); //Need to sleep to avoid nonce errors - generation of addresses extremely fast
     }
   }
   

@@ -14,14 +14,16 @@ function InitialSetup(){
   PropertiesService.getScriptProperties().setProperty('LendingBotRunstate', 'idle');
   //PropertiesService.getScriptProperties().setProperty('lendingBotObject', lendbot);
   
-  for (var i = 0; i < 2; i++) {
+  for (var i = 0; i < 1; i++) {
     ScriptApp.newTrigger('pingPolo')
     .timeBased()
     .everyMinutes(1)
     .create();
     
-    Utilities.sleep(30000);
+    Utilities.sleep(60 * 1000);
   }
   
 }
+
+
 

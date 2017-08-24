@@ -25,12 +25,9 @@
 */ 
 
 
-function tst(){
+function testCodeSnippet(){
   perfFunction(
     function() {var exchInst = new poloniexApi(gSheet.apiKey,gSheet.secretKey)}, 50)
-  
-  //lendbot.exchInst.returnAvailableAccountBalances();
-  //lendbot.exchInst.returnOpenLoanOffers()
 }
 
 perfFunction = function(functionname, sleeptimer){
