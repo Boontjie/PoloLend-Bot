@@ -27,6 +27,13 @@ Email - solutions8infinity@gmail.com
  - Detailed logs on error, lending and market conditions
  - Free to use and no cost to run
 
+## Installation Instructions
+1. Create a copy of the spreadsheet in google drive.
+2. Copy the code to a google apps script file
+   - Google Apps Script Github Assistant for Chrome allows easy pull requests
+3. Change the spreadsheet ID in global.gs to the one on your google drive.  Please see https://stackoverflow.com/questions/36061433/how-to-do-i-locate-a-google-spreadsheet-id
+4. Run the 'InitialSetup' code in Setup.gs
+
 ## Donations
 
 If you find it useful, please consider donating some cryptocoins: 
