@@ -12,6 +12,9 @@ https://docs.google.com/spreadsheets/d/1ztRn2hwAhLnW16LLCouZ_cYrH3L8rT2SAeoJr3uF
 
 Email - solutions8infinity@gmail.com
 
+- I also have a Steemit account - https://steemit.com/@boontjie/
+
+
 ## Features
 
  - Only requires you to have a google email account
@@ -40,6 +43,7 @@ If you find it useful, please consider donating some cryptocoins:
 - BTC - 1KEubFgqysM96CLL3oYWkNSvVMBULRCkbB
 - ETH - 0xc881632b9d123efcfc603d244d07b43cddb42ed0
 - ZEC - t1MSz6yyKsbbXuaZivFmsZ3mc2B1Km93JJC
+- STEEM - bff313ab478f8b4e
 
 Altcoins:
 - BTS - a189ba0fa7326acd
