@@ -3,7 +3,7 @@
 *********/
 
 //Spreadsheet constant names
-var SPREADSHEET_ID = '1hcvb979jkKx2Oy3tg27OCDlihlDskTAyv7ESfCn-DwA';
+var SPREADSHEET_ID = 'ENTER YOUR SPREADSHEET ID HERE';
 
 var placeLoanWs = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName('PlaceLoan');
 var parameterWs = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName('Parameters');

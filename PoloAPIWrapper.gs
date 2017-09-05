@@ -81,6 +81,20 @@ var poloniexApi = function(apiKey,secretKey) {
     return parcedData['orderID']
   }
   
+  this.returnAvailableAccountBalances = function(){
+    var t = Date.now();
+    var value = this.baseApiReturnAvailableAccountBalances();
+    Logger.fine('"returnAvailableAccountBalances" runtime: ' + (Date.now() - t)/1000 + ' seconds.');
+    return value;
+  }
+  
+  this.returnOpenLoanOffers = function(){
+    var t = Date.now();
+    var value = this.baseApiReturnOpenLoanOffers()
+    Logger.fine('"returnOpenLoanOffers" runtime: ' + (Date.now() - t)/1000 + ' seconds.')
+    return value;
+  }
+  
   
   
   

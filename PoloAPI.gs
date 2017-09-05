@@ -165,7 +165,7 @@
         return this.apiCall(params);
     }
     
-    this.returnAvailableAccountBalances = function (){
+    this.baseApiReturnAvailableAccountBalances = function (){
       // Sample output:  {"exchange":{"BTC":"1.19042859","BTM":"386.52379392","CHA":"0.50000000","DASH":"120.00000000","STR":"3205.32958001", "VNL":"9673.22570147"},"margin":{"BTC":"3.90015637","DASH":"250.00238240","XMR":"497.12028113"},"lending":{"DASH":"0.01174765","LTC":"11.99936230"}}
       
       //  POLONIEX DOCUMENTATION
@@ -411,7 +411,7 @@
         return this.apiCall(params);
     }
     
-    this.returnOpenLoanOffers = function (){
+    this.baseApiReturnOpenLoanOffers = function (){
       // Sample output: {"BTC":[{"id":10595,"rate":"0.00020000","amount":"3.00000000","duration":2,"autoRenew":1,"date":"2015-05-10 23:33:50"}],"LTC":[{"id":10598,"rate":"0.00002100","amount":"10.00000000","duration":2,"autoRenew":1,"date":"2015-05-10 23:34:35"}]}      
       //    
       //  POLONIEX DOCUMENTATION

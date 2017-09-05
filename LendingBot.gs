@@ -6,6 +6,7 @@ function runLendingBot(){
     lendbot.runBot();
   }
   catch(e){
+    Logger.log(e)
     PropertiesService.getScriptProperties().setProperty('LendingBotRunstate', 'idle');
   }
 }
@@ -67,7 +68,7 @@ function pingPolo(){
     var stopDateTime = new Date();
     //Calculate the time elapsed and allow at the timer to be reduced by 1 second at minimum.
     refreshTimeRemaining = +refreshTimeRemaining - Math.floor( (+stopDateTime.getTime() - +startDateTime.getTime()) / 1000 ) - 30
-    PropertiesService.getScriptProperties().setProperty("refreshTimeRemaining", refreshTimeRemaining); // cache for 1.5 minutes
+    PropertiesService.getScriptProperties().setProperty("refreshTimeRemaining", refreshTimeRemaining);
   }
 }
 

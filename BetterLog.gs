@@ -48,6 +48,13 @@ var BetterLog = function(useAdvLog){
     return nativeLogger_.log(message)
   };
   
+  this.fine = function(message, optValues){
+    if(useAdvLog == true){
+      return fine(message, optValues)
+    }
+    return nativeLogger_.log(message)
+  };
+  
   this.Level = function() {
     return Level;
   }
