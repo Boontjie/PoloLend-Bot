@@ -39,8 +39,10 @@ function pingPolo(){
   
   var exchInst = new poloniexApi(gSheet.APIKEY, gSheet.SECRETKEY);
   
+  if(refreshTimeRemaining == null || refreshTimeRemaining == undefined){PropertiesService.getScriptProperties().setProperty("refreshTimeRemaining", 0)}
+  
   //Check if the next loan refresh needs to occur - timer exists & timer has hit 0 & bot is not currently running
-  if (botRunstate != 'running' & refreshTimeRemaining != null & refreshTimeRemaining <= 0) {
+  if (botRunstate != 'running' && refreshTimeRemaining != null && refreshTimeRemaining <= 0) {
     runLendingBot();
     return;
   }
@@ -52,7 +54,7 @@ function pingPolo(){
   //As long as any currency is lendable, the bot should be run
   for(var curr in parcedData['lending']){ //Will only loop through currencies that have available account balances
     for(var key in gSheet.currToLend){
-      if(  gSheet.currToLend[key]==curr & parcedData['lending'][curr] >= gSheet.currMinLendAmt[key] & gSheet.currToLendAllowed[key] == 'YES' ){
+      if(  gSheet.currToLend[key]==curr && parcedData['lending'][curr] >= gSheet.currMinLendAmt[key] && gSheet.currToLendAllowed[key] == 'YES' ){
         loanRefreshPossible = true;
        }
     }
@@ -64,10 +66,10 @@ function pingPolo(){
     return;}
   
   //Check if there are open loans, if so, reduce the timer by the timerlag and runtime lag
-  if(exchInst.returnOpenLoanOffers().length > 0){
+  if(exchInst.returnOpenLoanOffers().toString().length > 0){
     var stopDateTime = new Date();
     //Calculate the time elapsed and allow at the timer to be reduced by 1 second at minimum.
-    refreshTimeRemaining = +refreshTimeRemaining - Math.floor( (+stopDateTime.getTime() - +startDateTime.getTime()) / 1000 ) - 30
+    refreshTimeRemaining = +refreshTimeRemaining - Math.floor( (+stopDateTime.getTime() - +startDateTime.getTime()) / 1000 ) - 60
     PropertiesService.getScriptProperties().setProperty("refreshTimeRemaining", refreshTimeRemaining);
   }
 }
@@ -78,9 +80,9 @@ var LendingBot = function(){
   * LendingBot Globals
   *********/
   var USE_BETTERLOG = true;
-  var CLEAR_ERR_LOG = false;
-  var CLEAR_LEND_LOG = false;
-  var CLEAR_LENDBOOK_LOG = false;
+  var CLEAR_ERR_LOG = true;
+  var CLEAR_LEND_LOG = true;
+  var CLEAR_LENDBOOK_LOG = true;
   
   /*************************************************************************
   * LendingBot Constant and Object Initialization
@@ -120,7 +122,7 @@ var LendingBot = function(){
   
   this.runBot = function(){
     PropertiesService.getScriptProperties().setProperty('LendingBotRunstate', 'running');                //Update lendingbot state from idle to running as soon as the bot is run.
-    CacheService.getScriptCache().put("refreshTimeRemaining", this.timeToLoanOfferRefresh, 120);         //Update the cached time to next refresh as soon as bot is run
+    PropertiesService.getScriptProperties().setProperty("refreshTimeRemaining", this.timeToLoanOfferRefresh);         //Update the cached time to next refresh as soon as bot is run
     
     Logger.info('Starting Google Apps Script Lending Bot for Poloniex.')
 
@@ -269,12 +271,12 @@ var LendingBot = function(){
       var autorenew = placeLoanWs.getRange(loanLoc[n][0],loanLoc[n][1],1,1).offset(4, 0).getValue();
       var lendingrate = placeLoanWs.getRange(loanLoc[n][0],loanLoc[n][1],1,1).offset(5, 0).getValue();
       
-      if(this.currToLend[index] == currency & amount > 0 & amount < this.currMinLendAmt[index]){  
+      if(this.currToLend[index] == currency && amount > 0 && amount < this.currMinLendAmt[index]){  
         Logger.warning('Insufficient balance in loan to satisfy Poloniex minimum loan requirement. Minimum required is ' + this.currMinLendAmt[index] + ' ' + this.currToLend[index] + '. Amount provided is ' + amount + '. Operation aborted.');
         return;
       }
       
-      if(this.currToLend[index] == currency & amount >= this.currMinLendAmt[index]){  
+      if(this.currToLend[index] == currency && amount >= this.currMinLendAmt[index]){  
         var orderID = this.exchInst.createLoanOffer(currency, amount, duration, autorenew, lendingrate);
         this.logLoans(orderID, currency, amount, duration, autorenew, lendingrate, 'N');
       }      
